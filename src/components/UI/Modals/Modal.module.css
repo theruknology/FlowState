@@ -1,0 +1,4 @@
+.modal {
+  width: min(700px, 90%);
+  background-color: rgb(37, 37, 37);
+}

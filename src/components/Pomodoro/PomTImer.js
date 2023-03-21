@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import styles from "./PomTimer.module.css";
+
 const PomTimer = (props) => {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(props.minutes);
@@ -30,12 +32,16 @@ const PomTimer = (props) => {
     setPaused((prev) => !prev);
   };
 
-  const resetTimer = () => {
+  const stopTimer = () => {
     setTimerStop(false);
     setPaused(true);
     setMinutes(props.minutes);
     setSeconds(0);
-  }
+
+    const remaning = props.minutes - minutes;
+
+    props.stopReq(remaning);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => tick(), 1000);
@@ -54,24 +60,21 @@ const PomTimer = (props) => {
   }, [timerStop, paused]);
 
   return (
-    <>
-      <div className="m-4 ring-4 ring-blue-300 rounded-lg w-fit p-4 flex">
-        <h1 className="font-bold text-xl">{minutes}: </h1>
-        <h1 className="font-bold text-xl">{seconds}</h1>
+    <div className={styles.timer}>
+      <h3>{props.title}</h3>
+      <p>{props.flair}</p>
+      <div className={styles.ctime}>
+        <h2>{minutes < 10 ? "0" + minutes : minutes}: </h2>
+        <h2>{seconds < 10 ? "0" + seconds : seconds}</h2>
       </div>
-      <button
+      {/* <button
         className="bg-blue-700 text-white py-2 px-4 rounded-xl ml-4 text-sm mb-4"
         onClick={toggleTimer}
       >
         {paused ? "Play" : "Pause"}
-      </button>
-      <button
-        className="bg-blue-700 text-white py-2 px-4 rounded-xl ml-4 text-sm mb-4"
-        onClick={resetTimer}
-      >
-      Reset
-      </button>
-    </>
+      </button> */}
+      <button onClick={stopTimer}>Stop</button>
+    </div>
   );
 };
 

@@ -1,0 +1,37 @@
+.newSessionModal {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+}
+
+.newSessionModal h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.newForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.newForm div {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+input {
+  border-radius: 0.35rem;
+  background-color: #494949;
+  padding: 6px;
+}
+
+.newForm button {
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}
