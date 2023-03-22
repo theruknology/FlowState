@@ -18,6 +18,7 @@ const PomTimer = (props) => {
             setTimerStop(true);
             setSeconds(0);
             console.log("timer stop called");
+            alert("Great! Session Complete, click on stop to save it.");
             return props.minutes;
           }
         });
@@ -35,12 +36,11 @@ const PomTimer = (props) => {
   const stopTimer = () => {
     setTimerStop(false);
     setPaused(true);
-    setMinutes(props.minutes);
     setSeconds(0);
 
     const remaning = props.minutes - minutes;
 
-    props.stopReq(remaning);
+    props.stopReq(remaning === 0 ? props.minutes : remaning);
   };
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const PomTimer = (props) => {
       console.log("garbage collection");
       clearInterval(interval);
     };
-  }, [timerStop, paused]);
+  }, [timerStop]);
 
   return (
     <div className={styles.timer}>

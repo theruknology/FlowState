@@ -6,7 +6,7 @@ const initialState = {
       id: 1,
       name: "Sample Session",
       duration: 35,
-      date: new Date(),
+      date: "3/22/2023",
       flair: "Sample Flair",
     },
   ],
@@ -33,6 +33,7 @@ const sessionReducer = (state = initialState, action) => {
       };
     case "DELETE_SESSION":
       return {
+        ...state,
         sessionsList: deleteSession(action.payload, state.sessionsList),
       };
     case "SET_FLAIRS":
@@ -42,6 +43,38 @@ const sessionReducer = (state = initialState, action) => {
           ...state.settings,
           flairs: action.payload,
         },
+      };
+    case "ADD_FLAIR":
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          flairs: [action.payload, ...state.settings.flairs],
+        },
+      };
+    case "DELETE_FLAIR":
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          flairs: deleteSession(action.payload, state.settings.flairs),
+        },
+      };
+
+    case "UPDATE_SESSIONS":
+      return {
+        ...state,
+        sessionsList: [...action.payload],
+      };
+    case "UPDATE_SETTINGS":
+      return {
+        ...state,
+        settings: { ...action.payload },
+      };
+    case "SET_GOAL":
+      return {
+        ...state,
+        settings: { ...state.settings, goal: action.payload },
       };
     default:
       return state;

@@ -13,6 +13,7 @@ const NewSession = (props) => {
     <PromptModal>
       <div className={styles.newSessionModal}>
         <h2>New Session</h2>
+        <p>You Can Add Custom Flairs From The Settings</p>
         <NewForm onSubmit={newRequestHandler} onClose={props.onClose} />
       </div>
     </PromptModal>

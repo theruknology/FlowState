@@ -22,6 +22,16 @@ const ModalOverlay = (props) => {
   );
 };
 
+const FullModalOverlay = (props) => {
+  return (
+    <div
+      className={`${styles.fullModal} fixed w-screen overflow-x-hidden rounded-lg py-16 px-8 h-screen z-30 bottom-2/4 right-2/4 translate-x-2/4 translate-y-2/4 overflow-auto`}
+    >
+      {props.children}
+    </div>
+  );
+};
+
 const PromptModal = (props) => {
   return (
     <>
@@ -37,5 +47,20 @@ const PromptModal = (props) => {
   );
 };
 
+const FullModal = (props) => {
+  return (
+    <>
+      {ReactDOM.createPortal(
+        <Backdrop onClick={props.onClose} />,
+        document.getElementById("backdrop-root")
+      )}
+      {ReactDOM.createPortal(
+        <FullModalOverlay>{props.children}</FullModalOverlay>,
+        document.getElementById("overlay-root")
+      )}
+    </>
+  );
+};
+
 export default PromptModal;
-export { Backdrop, ModalOverlay };
+export { Backdrop, ModalOverlay, FullModal };

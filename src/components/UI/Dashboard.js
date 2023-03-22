@@ -1,4 +1,5 @@
 import React from "react";
+import Congrats from "../Congrats";
 import PomTimer from "../Pomodoro/PomTImer";
 import AllSessions from "./AllSessions";
 import Card from "./Card";
@@ -14,8 +15,8 @@ const Dashboard = (props) => {
         </h1>
         <Card>
           <div className={styles.nav}>
-            <button>Settings</button>
-            <button>Stats</button>
+            <button onClick={props.settingsMod}>Settings</button>
+            <button onClick={props.statsView}>Stats</button>
           </div>
         </Card>
       </div>
@@ -24,10 +25,13 @@ const Dashboard = (props) => {
         <PomTimer
           title={props.pomData.title}
           flair={props.pomData.flair}
-          minutes={props.pomData.duration}
+          // minutes={props.pomData.duration}
+          minutes={1}
           stopReq={props.stopReq}
         />
       )}
+
+      {props.congrats && <Congrats />}
 
       <div className={styles.UIGrid}>
         {!props.pomTimerOn && (

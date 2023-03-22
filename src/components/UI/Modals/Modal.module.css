@@ -2,3 +2,8 @@
   width: min(700px, 90%);
   background-color: rgb(37, 37, 37);
 }
+
+.fullModal {
+  width: 100vw;
+  background-color: rgb(37, 37, 37);
+}

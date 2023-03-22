@@ -5,10 +5,18 @@ import GoalBar from "./GoalBar";
 
 const TodayView = () => {
   const toDate = new Date();
-  const todaysSessions = useSelector((state) =>
-    state.sessionsList.filter((ses) => ses.date === toDate)
-  );
+  console.log(toDate.toLocaleDateString());
+
+  const allSessions = useSelector((state) => state.sessionsList);
+  const todaysSessions = [];
+  allSessions.map((itm) => {
+    if (itm.date == toDate.toLocaleDateString()) {
+      todaysSessions.push(itm);
+    }
+  });
+
   const dailyGoal = useSelector((state) => state.settings.goal);
+
   const todayTime = (() => {
     let x = 0;
     for (let i of todaysSessions) {
